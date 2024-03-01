@@ -120,15 +120,16 @@ conn(X,Y,Dir):-tile(4,2,X,Y), Dir="down".
 % 4.png LEFT
 conn(X,Y,Dir):-tile(4,3,X,Y), Dir="left".
 
-:-conn(0,Y,"up").
-:-conn(X,Y,"down"), dim(D), X = D-1.
 :-conn(X,0,"left").
 :-conn(X,Y,"right"), dim(D), Y = D-1.
+:-conn(0,Y,"up").
+:-conn(X,Y,"down"), dim(D), X = D-1.
 
-:- conn(X,Y,"up"), not conn(X-1,Y,"down").
-:- conn(X,Y,"down"), not conn(X+1,Y,"up").
 :- conn(X,Y,"left"), not conn(X,Y-1,"right").
 :- conn(X,Y,"right"), not conn(X,Y+1,"left").
+:- conn(X,Y,"up"), not conn(X-1,Y,"down").
+:- conn(X,Y,"down"), not conn(X+1,Y,"up").
+
 
 :- tile(4,1,X,Y), tile(4,3,X,Y+1).
 :- tile(4,3,X,Y), tile(4,1,X,Y-1).
