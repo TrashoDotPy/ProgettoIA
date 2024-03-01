@@ -16,13 +16,13 @@ c(Z):- #count{Rot,X,Y: tile(_,Rot,X,Y)}=Z.
 %--------------------------constrains-----------------------------------------
 :-tile(_,Rot,X,Y), tile(_,Rot1,X,Y), Rot <> Rot1.
 
-% Determines if two tiles are connected
+% Battery Reached
 connected(X,Y,X2,Y2):-tile(0,_ ,X,Y), X2 = X-1, Y2 = Y, conn(X,Y, "up"), tile(_,_,X2,Y2).
 connected(X,Y,X2,Y2):-tile(0,_ ,X,Y), X2 = X+1, Y2 = Y, conn(X,Y, "down"), tile(_,_,X2,Y2).
 connected(X,Y,X2,Y2):-tile(0,_ ,X,Y), Y2 = Y-1, X2 = X, conn(X,Y, "left"), tile(_,_,X2,Y2).
 connected(X,Y,X2,Y2):-tile(0,_ ,X,Y), Y2 = Y+1, X2 = X, conn(X,Y, "right"), tile(_,_,X2,Y2).
 
-
+% Determines if two tiles are connected
 connected(X,Y,X2,Y2):-connected(_,_,X,Y), X2 = X-1, Y2 = Y, conn(X,Y, "up"), tile(_,_,X2,Y2), not connected(X2,Y2,X,Y).
 connected(X,Y,X2,Y2):-connected(_,_,X,Y), X2 = X+1, Y2 = Y, conn(X,Y, "down"), tile(_,_,X2,Y2), not connected(X2,Y2,X,Y).
 connected(X,Y,X2,Y2):-connected(_,_,X,Y), Y2 = Y-1, X2 = X, conn(X,Y, "left"), tile(_,_,X2,Y2), not connected(X2,Y2,X,Y).
