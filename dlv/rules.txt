@@ -36,6 +36,14 @@ lampsConnected(N):- #count{T,X,Y: tile(T,_,X,Y), T = 4, connected(_,_,X,Y)} = N.
 
 :- lamps(N), lampsConnected(N1), N1<>N.
 
+% constrains per type of component
+% 0.PNG -> Battery
+% 1.PNG -> Linear wire
+% 2.PNG -> L wire
+% 3.PNG -> TriDir wire
+% 4.PNG -> Lamp
+
+
 % 0.png UP
 conn(X,Y,Dir):-tile(0,0,X,Y), Dir="up".
 conn(X,Y,Dir):-tile(0,0,X,Y), Dir="left".
